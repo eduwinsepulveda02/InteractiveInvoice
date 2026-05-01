@@ -1,0 +1,147 @@
+body {
+    font-family: Arial, sans-serif;
+    padding: 20px;
+    line-height: 0.3;
+}
+
+
+.invoice-container {
+    background: white;
+    max-width: 700px;
+    margin: auto;
+    padding: 90px;
+    border: 3px solid black;
+}
+
+/* Header */
+.invoice-header {
+    background: #1e73be;
+    color: white;
+    padding: 40px 14px;
+    text-align: left;
+    background-image: url('/images/banner-bg.png');
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.invoice-header h1 {
+    font-family: "Times New Roman", Times, serif;
+    font-weight: 500;
+}
+
+.for-section {
+    margin-right: 10px;
+}
+
+.invoice-header p {
+    font-size: 14px;
+}
+
+/* Info*/
+.invoice-info h2 {
+    font-family: "Times New Roman", Times, serif;
+    color: #1F487C;
+    font-weight: 500;
+}
+
+.invoice-info p {
+    font-size: 14px;
+}
+
+
+.main-info {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+
+.bill-to,
+.for-section {
+    margin-top: 20px;
+}
+
+
+/* Items table */
+.items-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    border: 3px solid #2f4f6f;
+    border-bottom: 4px solid #2f4f6f;
+}
+
+.items-table th,
+.items-table td {
+    border: 1px solid #ccc;
+    padding: 10px;
+    width: 70%;
+}
+
+
+.items-table thead {
+    background: linear-gradient(to bottom, #19447B, #183561);
+    color: white;
+    font-family: "Times New Roman", Times, serif;
+    font-weight: 500;
+}
+
+/* Totals table */
+.totals-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.totals-table .field {
+    text-align: right;
+}
+
+.totals-table .value.subtotal {
+    border-top: 1px solid #1F487C;
+}
+
+.totals-table .value {
+    border-bottom: 1px solid #ccc;
+    border-right: 1px solid #1F487C;
+    border-left: 1px solid #1F487C;
+}
+
+.totals-table .total-amount {
+    background-color: #1F487C;
+    color: white;
+    border-right: 1px solid #1F487C;
+    border-left: 1px solid #1F487C;
+}
+
+.totals-table td {
+    text-align: center;
+}
+
+.totals-table th,
+.totals-table td {
+    padding: 10px;
+    width: 70%;
+}
+
+
+.totals-table thead {
+    background: linear-gradient(to bottom, #19447B, #183561);
+    color: white;
+    font-family: "Times New Roman", Times, serif;
+    font-weight: 500;
+}
+
+.invoice-footer {
+    margin-top: 30px;
+    font-size: 0.9em;
+    color: #555;
+}
+
+.invoice-footer h3 {
+    color: #1F487C;
+    font-weight: 100;
+    font-size: 1em;
+    line-height: 1.2;
+}

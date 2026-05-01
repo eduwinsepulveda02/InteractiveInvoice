@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Invoice</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <div class="invoice-container">
+
+    <!-- HEADER -->
+    <header class="invoice-header">
+      <h1>Company Name</h1>
+      <p>Address, City, ST, ZIP Code</p>
+      <p>Phone Number | Fax Number</p>
+    </header>
+
+    <!-- INVOICE INFO -->
+    <div class="invoice-info">
+      <section>
+        <h2>Invoice #100</h2>
+        <p>Date: <input type="date" id="invoiceDate"></p>
+      </section>
+
+      <div class="main-info">
+        <!-- BILL TO -->
+        <section class="bill-to">
+          <h2>Bill To</h2>
+          <p><input type="text" id="customerName" placeholder="Name | Company"></p>
+          <p><input type="text" id="customerAddress" placeholder="Address, City, ST, ZIP Code"></p>
+          <p><input type="text" id="customerPhone" placeholder="Phone"></p>
+        </section>
+
+        <!-- FOR -->
+        <section class="for-section">
+          <h2>For</h2>
+          <p><input type="text" id="productDescription" placeholder="Product Description"></p>
+        </section>
+      </div>
+    </div>
+
+    <!-- ITEM TABLE -->
+    <table class="items-table">
+      <thead>
+        <tr>
+          <th>Item Description</th>
+          <th>Amount</th>
+        </tr>
+      </thead>
+      <tbody id="itemRows">
+        <tr>
+          <td><input type="text" class="item-desc"></td>
+          <td><input type="number" class="item-amount" step="0.01"></td>
+        </tr>
+        <tr>
+          <td><input type="text" class="item-desc"></td>
+          <td><input type="number" class="item-amount" step="0.01"></td>
+        </tr>
+        <tr>
+          <td><input type="text" class="item-desc"></td>
+          <td><input type="number" class="item-amount" step="0.01"></td>
+        </tr>
+        <tr>
+          <td><input type="text" class="item-desc"></td>
+          <td><input type="number" class="item-amount" step="0.01"></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- ADD ROW BUTTON -->
+    <button id="addRowBtn" style="margin-top: 15px;">Add Item</button>
+
+    <!-- TOTALS -->
+    <table class="totals-table">
+      <tbody>
+        <tr>
+          <td class="field">Subtotal</td>
+          <td class="value subtotal" id="subtotal">$0.00</td>
+        </tr>
+        <tr>
+          <td class="field">Tax Rate (%)</td>
+          <td class="value"><input type="number" id="taxRate" step="0.01"></td>
+        </tr>
+        <tr>
+          <td class="field">Other Costs</td>
+          <td class="value"><input type="number" id="otherCosts" step="0.01"></td>
+        </tr>
+        <tr>
+          <td class="field"><strong>Total Cost</strong></td>
+          <td class="total-amount" id="totalCost">$0.00</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- FOOTER -->
+    <footer class="invoice-footer">
+      <h3>Make all checks payable to Company Name</h3>
+      <p>If you have any questions concerning this invoice, contact:</p>
+      <p>Contact Name, Phone Number, Email</p>
+      <p>Thank you for your business!</p>
+    </footer>
+
+  </div>
+
+  <!-- JAVASCRIPT -->
+  <script>
+    function calculateTotals() {
+      let customerName = document.getElementById("customerName").value
+      
+  
+      let amounts = document.querySelectorAll(".item-amount");
+      let subtotal = 0;
+
+      amounts.forEach(input => {
+        let value = parseFloat(input.value);
+        if (!isNaN(value)) subtotal += value;
+      });
+
+      document.getElementById("subtotal").textContent = "$" + subtotal.toFixed(2);
+
+      let taxRate = parseFloat(document.getElementById("taxRate").value) || 0;
+      let otherCosts = parseFloat(document.getElementById("otherCosts").value) || 0;
+
+      let taxAmount = subtotal * (taxRate / 100);
+      let total = subtotal + taxAmount + otherCosts;
+
+      document.getElementById("totalCost").textContent = "$" + total.toFixed(2);
+    }
+
+    // Update totals whenever values change
+    document.addEventListener("input", calculateTotals);
+
+    // Default date = today
+    document.getElementById("invoiceDate").valueAsDate = new Date();
+
+    // Add new row
+    document.getElementById("addRowBtn").addEventListener("click", () => {
+      const row = document.createElement("tr");
+      row.innerHTML = `
+        <td><input type="text" class="item-desc"></td>
+        <td><input type="number" class="item-amount" step="0.01"></td>
+      `;
+      document.getElementById("itemRows").appendChild(row);
+    });
+  </script>
+
+</body>
+
+</html>
